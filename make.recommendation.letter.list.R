@@ -31,7 +31,7 @@ for(student.dir in d) {
   }
   # number of recommendations:
   noRec = length(which(grepl('ecommendation',file.list)==TRUE)) +
-    length(which(grepl('Letter',file.list)==TRUE))
+    length(which(grepl('etter',file.list)==TRUE))
   print(paste(fdir,':',ct,':',noRec))
   name <- strsplit(student.dir,'_')[[1]]
   r = rbind(r, data.frame(
@@ -55,19 +55,29 @@ write.csv(r, file=file.path(path.source,'_results-generated',
                             'make.recommendation.letter.list.csv'))
 
 # output a list that can be used in a LaTeX document
-sink(file="make.recommendation.letter.list.tex", type='output')
-cat("\\section{Recommendation Letters}")
-cat("\n\n")
-cat(paste("List of ", nrow(r) ," Recommendees: \n",sep=''))
 yr0 = 0
+t = c()
 for(i in 1:nrow(r)) {
   if (r$yr[i] != yr0) {
     yr0 = r$yr[i]
-    cat(paste("\n \\textbf{", yr0,":}\n",sep=''))
+    t = c(t, paste0("\n \\textbf{", yr0,":}\n"))
   }
-  cat(paste(r$first.name[i], ' ',r$last.name[i],'; ',sep=''))
-  cat("\n")
+  t=c(t, paste(r$first.name[i], ' ',r$last.name[i],'; ',sep=''))
 }
-sink()
-getwd()
+
+
+fileConn<-file(file.path(path.source,'_results-generated',
+                         "make.recommendation.letter.list.tex"))
+writeLines(c("\\section{Recommendation Letters}",
+             paste0("List of ", nrow(r) ," Recommendees: \n")), 
+             fileConn)
+writeLines(t, fileConn)
+close(fileConn)
+
+fileConn<-file("make-recommendation-letter-list.tex")
+writeLines(c("\\section{Recommendation Letters}",
+             paste0("List of ", nrow(r) ," Recommendees: \n")), 
+           fileConn)
+writeLines(t, fileConn)
+close(fileConn)
 
