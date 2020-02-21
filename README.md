@@ -9,6 +9,6 @@ Clone and install the package. Modify the path in `myConfig.R`
 
 ## Generation
 
-First run **recommendation letter list.R**, it will generated the generated files.
+First run **make.recommendation.letter.list.R**, it will generated the generated files.
 
 Compile the **make.recommendation.letter.list.tex** to generate a preview of the output.
