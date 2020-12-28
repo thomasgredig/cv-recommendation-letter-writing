@@ -4,8 +4,9 @@
 .Ruserdata
 .DS_Store
 myConfig.R
-CV-Recommendation-Letters-Preview.aux
-CV-Recommendation-Letters-Preview.log
-CV-Recommendation-Letters-Preview.pdf
-CV-Recommendation-Letters-Preview.synctex.gz
+*.aux
+*.log
+*.pdf
+*.synctex.gz
 make-recommendation-letter-list.tex
+CV-Recommendation-Letters-Summary.csv
