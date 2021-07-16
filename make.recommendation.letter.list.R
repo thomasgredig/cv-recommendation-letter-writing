@@ -51,9 +51,10 @@ for(student.dir in d) {
 #  sort by year
 r = r[order(r$date),]
 str(r)
-r$yr = as.numeric(levels(r$yr)[r$yr])
-r$last.name = as.character(levels(r$last.name)[r$last.name])
-r$first.name = as.character(levels(r$first.name)[r$first.name])
+r$yr = as.numeric(r$yr)
+#r$yr = as.numeric(levels(r$yr)[r$yr])
+r$last.name = as.character(r$last.name)
+r$first.name = as.character(r$first.name)
 write.csv(r, file.path(PATH.DEST, OUTPUT_FILE))
 
 
@@ -87,4 +88,3 @@ writeLines(c("\\section{Recommendation Letters}",
            fileConn)
 writeLines(t, fileConn)
 close(fileConn)
-
